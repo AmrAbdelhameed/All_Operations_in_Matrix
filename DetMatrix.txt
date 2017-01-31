@@ -1,0 +1,45 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+double dete(int n, double matrix[100][100])
+{
+    double Newnode, det;
+    int i, j, k;
+
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            if(j>i)
+            {
+                Newnode = matrix[j][i]/matrix[i][i];
+                for(k = 0; k < n; k++)
+                {
+                    matrix[j][k] -= Newnode * matrix[i][k];
+                }
+            }
+        }
+    }
+    det = 1;
+    for(i = 0; i < n; i++)
+        det *= matrix[i][i];
+
+    return det;
+}
+int main()
+{
+    int n,i,j;
+    double matrix[100][100];
+    cout<<"Enter order of matrix : ";
+    cin>>n;
+    cout<<endl<<"Enter the matrix : "<<endl<<endl;
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            cin>>matrix[i][j];
+        }
+    }
+    cout<<"The Determinate : "<<dete(n , matrix);
+    return 0;
+}

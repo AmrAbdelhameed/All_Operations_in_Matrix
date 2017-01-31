@@ -1,0 +1,61 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+    int n, p;
+    cout<<("Enter the dimension : ");
+    cin>>n;
+    cout<<endl;
+    cout<<"Enter the multiplication power : ";
+    cin>>p;
+    int matrix[n][n];
+    int result[n][n];
+
+    cout<<endl<<"Enter the elements of matrix "<<endl<<endl;
+    for ( int c = 0 ; c < n ; c++ )
+    {
+        for ( int d = 0 ; d < n ; d++ )
+        {
+            cin>>matrix[c][d];
+        }
+    }
+    int sum = 0;
+    int w = p/2;
+    for (int i = 0; i < w ; i++)
+    {
+        for ( int c = 0 ; c < n ; c++ )
+        {
+            for (int d = 0 ; d < n ; d++ )
+            {
+                for (int k = 0 ; k < n ; k++ )
+                {
+                    sum += matrix[c][k]*matrix[k][d];
+                }
+                result[c][d] = sum;
+                sum = 0;
+            }
+        }
+
+        for ( int c = 0 ; c < n ; c++ )
+        {
+            for ( int d = 0 ; d < n ; d++ )
+            {
+                matrix[c][d] = result[c][d];
+                result[c][d] = 0;
+            }
+        }
+    }
+
+    cout<<endl<<"Product of entered matrices : "<<endl<<endl;
+
+    for (int c = 0 ; c < n ; c++ )
+    {
+        for (int d = 0 ; d < n ; d++ )
+        {
+            cout<<matrix[c][d]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
